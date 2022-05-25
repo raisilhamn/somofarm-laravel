@@ -130,7 +130,7 @@
             </div>
 
             <a href="/dashboard">
-                <button class="w-100 btn btn-lg btn-primary" type="button">Sign in</button>
+                <button class="w-100 btn btn-lg btn-success" type="button" style="background-color: #287343">Sign in</button>
             </a>
 
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
