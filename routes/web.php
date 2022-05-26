@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Produk;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,16 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "",
+        "title" => "home",
     ]);
 });
+
+
+
+
+// Route::get('/produk') -> name('produk');
 
 Route::get('/produk', function () {
     return view('produk', [
-        "title" => "produk",
+        "title" => "[produk]",
     ]);
 });
-
 
 
 Route::get('/login', function () {
@@ -37,7 +41,11 @@ Route::get('/cart', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
+});
+
+Route::get('/crud', function () {
+    return view('dashboard.crud_produk');
 });
 
 
