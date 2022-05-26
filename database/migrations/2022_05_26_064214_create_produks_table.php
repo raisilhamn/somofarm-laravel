@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->text('ex');
             $table->text('body');
             $table->string('harga');
-            $table->binary('image')->nullable();
+            $table->string('image') ->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             

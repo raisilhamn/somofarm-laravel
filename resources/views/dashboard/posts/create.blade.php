@@ -7,11 +7,12 @@
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/produk">
+        <form method="post" action="/dashboard/produk" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="string" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+                <input type="string" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                    required autofocus value="{{ old('title') }}">
 
                 @error('title')
                     <div class="invalid-feedback">
@@ -31,37 +32,41 @@
 
             <div class="mb-3">
                 <label for="ex" class="form-label">Deskripsi singkat</label>
-                <input type="text" class="form-control @error('ex') is-invalid @enderror" id="ex" name="ex" value="{{ old('ex') }}">
+                <input type="text" class="form-control @error('ex') is-invalid @enderror" id="ex" name="ex"
+                    value="{{ old('ex') }}">
 
                 @error('ex')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
 
             </div>
 
 
             <div class="mb-3">
                 <label for="body" class="form-label">Deskripsi Lengkap</label>
-                <textarea class="form-control @error('body') is-invalid @enderror" id="body" rows="3" name="body" ></textarea>
+                {{-- There is no value attribute in textarea tag. Instead, put the value between open and close tag: --}}
+                {{-- https://stackoverflow.com/questions/56613209/how-to-use-variable-in-value-attribute-of-textarea-in-laravel-blade --}}
+                <textarea class="form-control @error('body') is-invalid @enderror" id="body" rows="5" name="body"></textarea>
 
                 @error('body')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
             </div>
 
 
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
+                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga"
+                    value="{{ old('harga') }}">
 
                 @error('harga')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
 
             </div>
@@ -80,7 +85,7 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Masukkan foto</label>
-                <input class="form-control" type="file" id="image" name="gambar">
+                <input class="form-control" type="file" id="image" name="image">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

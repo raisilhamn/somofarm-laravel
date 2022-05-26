@@ -15,7 +15,7 @@ class DashboardProdukController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.index',[
+        return view('dashboard.posts.index', [
             'items' => Produk::all()
         ]);
     }
@@ -27,7 +27,7 @@ class DashboardProdukController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create'); 
+        return view('dashboard.posts.create');
     }
 
     /**
@@ -38,16 +38,20 @@ class DashboardProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request-> validate([
+        $validatedData = $request->validate([
             'title' => 'required',
             'ex' => 'required',
             'body' => 'required',
+            'image' => 'image|max:4096',
             'harga' => 'required'
         ]);
 
-        Produk::create($validatedData);
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('produks-image');
+        }
 
-        return redirect('dashboard/produk') -> with('success', 'New Post has been added');
+        Produk::create($validatedData);
+        return redirect('dashboard/produk')->with('success', 'New Post has been added');
     }
 
     /**
@@ -58,7 +62,7 @@ class DashboardProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        return view('dashboard.posts.show',[
+        return view('dashboard.posts.show', [
             'produk' => $produk
         ]);
     }
@@ -71,7 +75,9 @@ class DashboardProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        //
+        return view('dashboard.posts.edit', [
+            'items' => $produk
+        ]);
     }
 
     /**
@@ -83,7 +89,19 @@ class DashboardProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'ex' => 'required',
+            'body' => 'required',
+            'harga' => 'required'
+        ]);
+
+
+        Produk::where('id', $produk->id)
+            ->update($validatedData);
+
+
+        return redirect('dashboard/produk')->with('success', 'New Post has been Updated');
     }
 
     /**
@@ -94,6 +112,8 @@ class DashboardProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        Produk::destroy($produk->id);
+
+        return redirect('dashboard/produk')->with('danger', 'Post has been deleted');
     }
 }
