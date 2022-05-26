@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Produk;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
@@ -23,15 +24,15 @@ Route::get('/', function () {
 
 
 
-Route::get('/produk', function () {
-    return view('produk', [
-        "title" => "[produk]",
-    ]);
-});
+// Route::get('/produk', function () {
+//     return view('produk', [
+//         "title" => "[produk]",
+//     ]);
+// });
 
-Route::get('/produks','App\Http\Controllers\ProdukController@index');
+Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
 // Route::get('/produk/{id}','ProdukController@show');
-
+Route::get('/', 'App\Http\Controllers\ProdukController@list');
 
 
 
@@ -48,6 +49,11 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-Route::get('/crud', function () {
-    return view('dashboard.crud_produk');
-});
+// Route::get('/produk', function () {
+//     return view('dashboard.crud_produk');
+// });
+
+Route::resource(
+    '/dashboard/produk',
+    App\Http\Controllers\DashboardProdukController::class
+);
