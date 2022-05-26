@@ -26,6 +26,12 @@
             <div class="container">
                 <h2 class="fw mb-5 text-center">Produk Pilihan</h1>
 
+                    <ul>
+                        @foreach ($data as $i)
+                            <li>{{ $i -> title }} | {{ $i -> harga }}</li>
+                        @endforeach
+                    </ul>
+                   
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <div class="col">
                             <div class="card shadow-sm">

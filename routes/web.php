@@ -1,5 +1,6 @@
 <?php
 use App\Models\Produk;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +23,16 @@ Route::get('/', function () {
 
 
 
-// Route::get('/produk') -> name('produk');
-
 Route::get('/produk', function () {
     return view('produk', [
         "title" => "[produk]",
     ]);
 });
+
+Route::get('/produks','App\Http\Controllers\ProdukController@index');
+// Route::get('/produk/{id}','ProdukController@show');
+
+
 
 
 Route::get('/login', function () {
@@ -47,9 +51,3 @@ Route::get('/dashboard', function () {
 Route::get('/crud', function () {
     return view('dashboard.crud_produk');
 });
-
-
-
-// Route::get('/signup', function () {
-//     return view('signup');
-// });
