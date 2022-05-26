@@ -32,7 +32,12 @@
                         <td><a href="/dashboard/produk/{{ $i->id }}" class="badge bg-info"><span
                                     data-feather="eye"></span></a>
                             <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <a href="" class="badge bg-danger"><span data-feather="trash"></span></a>
+                            
+                            <form action="/dashboard/produk" method="POST" class="d-inline">
+                                <button class="badge bg-danger border-0"><span data-feather="trash"></span> </button>
+
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
