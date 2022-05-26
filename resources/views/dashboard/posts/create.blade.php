@@ -11,7 +11,13 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="string" class="form-control" id="title" name="title">
+                <input type="string" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             {{-- <label for="Tanggal lahir" class="form-label">Tanggal lahir</label>
@@ -25,19 +31,39 @@
 
             <div class="mb-3">
                 <label for="ex" class="form-label">Deskripsi singkat</label>
-                <input type="text" class="form-control" id="ex" name="ex">
+                <input type="text" class="form-control @error('ex') is-invalid @enderror" id="ex" name="ex" value="{{ old('ex') }}">
+
+                @error('ex')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+
             </div>
 
 
             <div class="mb-3">
                 <label for="body" class="form-label">Deskripsi Lengkap</label>
-                <textarea class="form-control" id="body" rows="3" name="body"></textarea>
+                <textarea class="form-control @error('body') is-invalid @enderror" id="body" rows="3" name="body" ></textarea>
+
+                @error('body')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
 
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
-                <input type="text" class="form-control" id="harga" name="harga">
+                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
+
+                @error('harga')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+
             </div>
 
 

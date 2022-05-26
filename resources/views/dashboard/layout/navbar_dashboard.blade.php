@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item" >
-                <a class="nav-link {{ Request::is('crud') ? 'active' : '' }}" href="/crud">
+                <a class="nav-link {{ Request::is('dashboard/produk*') ? 'active' : '' }}" href="/dashboard/produk">
                     <span data-feather="shopping-bag" class="align-text-bottom"></span>
                     Crud Produk
                 </a>
