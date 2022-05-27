@@ -17,7 +17,6 @@
         @else
             {{ 'ngga ada gambar' }}
         @endif
-
     </div>
     <p class="pt-3 pb-2 mb-3">
         {{ $produk->body }}

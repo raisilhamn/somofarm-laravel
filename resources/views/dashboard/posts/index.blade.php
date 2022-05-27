@@ -6,8 +6,16 @@
     </div>
 
     @if (session()->has('success'))
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-success col-lg-8" role="alert">
             {{ session('success') }}
+        </div>
+    @endif
+
+
+
+    @if (session()->has('danger'))
+        <div class="alert alert-danger col-lg-8" role="alert">
+            {{ session('danger') }}
         </div>
     @endif
 
@@ -31,10 +39,14 @@
                         <td>{{ $i->harga }}</td>
                         <td><a href="/dashboard/produk/{{ $i->id }}" class="badge bg-info"><span
                                     data-feather="eye"></span></a>
-                            <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            
-                            <form action="/dashboard/produk" method="POST" class="d-inline">
-                                <button class="badge bg-danger border-0"><span data-feather="trash"></span> </button>
+                            <a href="/dashboard/produk/{{ $i->id }}/edit" class="badge bg-warning"><span
+                                    data-feather="edit"></span></a>
+
+                            <form action="/dashboard/produk/{{ $i->id }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?')"><span
+                                        data-feather="trash"></span> </button>
 
                             </form>
 

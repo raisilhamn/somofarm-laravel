@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Support\ValidatedData;
 
 class DashboardProdukController extends Controller
 {
@@ -93,12 +95,19 @@ class DashboardProdukController extends Controller
             'title' => 'required',
             'ex' => 'required',
             'body' => 'required',
+            'image' => 'image|max:4096',
             'harga' => 'required'
         ]);
 
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('produks-image');
+        }
 
         Produk::where('id', $produk->id)
-            ->update($validatedData);
+        ->update($validatedData);
 
 
         return redirect('dashboard/produk')->with('success', 'New Post has been Updated');
@@ -113,6 +122,10 @@ class DashboardProdukController extends Controller
     public function destroy(Produk $produk)
     {
         Produk::destroy($produk->id);
+
+        if ($produk -> image) {
+            Storage::delete($produk->image);
+        }
 
         return redirect('dashboard/produk')->with('danger', 'Post has been deleted');
     }

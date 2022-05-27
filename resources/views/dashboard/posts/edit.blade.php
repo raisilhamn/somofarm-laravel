@@ -7,7 +7,7 @@
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/produk/{{ $items->id }}">
+        <form method="post" action="/dashboard/produk/{{ $items->id }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -83,9 +83,19 @@
                 </select>
             </div> --}}
 
+
+
             <div class="mb-3">
                 <label for="image" class="form-label">Masukkan foto</label>
-                <input class="form-control" type="file" id="image" name="gambar">
+                <input type="hidden" name="oldImage" value="{{ $items -> image }}">
+                <div class="d-block mb-2">
+                    @if ($items->image)
+                        <img src="{{ asset('storage/' . $items->image) }}" alt="" style="max-height:100px; width: auto;">
+                    @else
+                        {{ 'ngga ada gambar' }}
+                    @endif
+                </div>
+                <input class="form-control" type="file" id="image" name="image">
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
