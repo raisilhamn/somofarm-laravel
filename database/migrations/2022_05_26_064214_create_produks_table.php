@@ -22,8 +22,6 @@ class CreateProduksTable extends Migration
             $table->string('image') ->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
-            
-
         });
     }
 
