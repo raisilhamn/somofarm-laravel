@@ -9,4 +9,6 @@ class Produk extends Model
 {
     use HasFactory;
     protected $fillable = ['title','ex','body','harga','image'];
+
+    
 }

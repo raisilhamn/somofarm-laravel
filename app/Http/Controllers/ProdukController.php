@@ -9,14 +9,11 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $data1 = Produk::first();
-        $data2 = Produk::first();
-        $data3 = Produk::first();
+        $data = Produk::all();
         return view('produk',[
-            "title" => "Produks",
-            'data1' => $data1,
-            'data2' => $data2,
-            'data3' => $data3
+            // 'data1' => $data1,
+            // 'data2' => $data2,
+            'items' => $data
         ]);
     }
 
@@ -30,17 +27,17 @@ class ProdukController extends Controller
 
 
 
-    public function list()
+
+    public function produkAll()
     {
-        $data1 = Produk::first();
-        $data2 = Produk::first();
-        $data3 = Produk::first();
+        $data = Produk::all();
         return view('home',[
-            'data1' => $data1,
-            'data2' => $data2,
-            'data3' => $data3
+            // 'data1' => $data1,
+            // 'data2' => $data2,
+            'items' => $data
         ]);
     }
+
 
     public function home()
     {
