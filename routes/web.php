@@ -22,23 +22,31 @@ Route::get('/', function () {
 });
 
 
-
-
 // Route::get('/produk', function () {
 //     return view('produk', [
 //         "title" => "[produk]",
 //     ]);
 // });
 
+/*
+Edit ini untuk akses database melalui kontroller
+*/
+
 Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
+Route::get('/produk', 'App\Http\Controllers\ProdukController@ProdukAll');
 // Route::get('/produk/{id}','ProdukController@show');
 // Route::get('/', 'App\Http\Controllers\ProdukController@list');
 Route::get('/', 'App\Http\Controllers\ProdukController@home');
 
 
-Route::get('/login', function () {
-    return view('sign_in');
-});
+Route::get('/login', 'App\Http\Controllers\LoginController@index');
+Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
+
+// Route::get('/login', function () {
+//     return view('sign_in');
+// });
+
+
 
 Route::get('/cart', function () {
     return view('cart');
