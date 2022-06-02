@@ -33,14 +33,18 @@ Edit ini untuk akses database melalui kontroller
 */
 
 Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
-Route::get('/produk', 'App\Http\Controllers\ProdukController@ProdukAll');
-// Route::get('/produk/{id}','ProdukController@show');
+// Route::get('/produk', 'App\Http\Controllers\ProdukController@ProdukAll');
+Route::get('/dashboard/produk','DashboardProdukController@edit');
 // Route::get('/', 'App\Http\Controllers\ProdukController@list');
 Route::get('/', 'App\Http\Controllers\ProdukController@home');
 
 
-Route::get('/login', 'App\Http\Controllers\LoginController@index');
+Route::get('/login', 'App\Http\Controllers\LoginController@index')->middleware('guest');
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
+Route::post('/logout', 'App\Http\Controllers\LogoutController@logout');
+
+
+
 
 // Route::get('/login', function () {
 //     return view('sign_in');
