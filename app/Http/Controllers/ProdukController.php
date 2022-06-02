@@ -9,9 +9,9 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $data1 = Produk::find(1);
-        $data2 = Produk::find(2);
-        $data3 = Produk::find(3);
+        $data1 = Produk::first();
+        $data2 = Produk::first();
+        $data3 = Produk::first();
         return view('produk',[
             "title" => "Produks",
             'data1' => $data1,
@@ -32,13 +32,23 @@ class ProdukController extends Controller
 
     public function list()
     {
-        $data1 = Produk::find(1);
-        $data2 = Produk::find(2);
-        $data3 = Produk::find(3);
+        $data1 = Produk::first();
+        $data2 = Produk::first();
+        $data3 = Produk::first();
         return view('home',[
             'data1' => $data1,
             'data2' => $data2,
             'data3' => $data3
+        ]);
+    }
+
+    public function home()
+    {
+        $data = Produk::all();
+        return view('home',[
+            // 'data1' => $data1,
+            // 'data2' => $data2,
+            'items' => $data
         ]);
     }
 

@@ -32,8 +32,8 @@ Route::get('/', function () {
 
 Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
 // Route::get('/produk/{id}','ProdukController@show');
-Route::get('/', 'App\Http\Controllers\ProdukController@list');
-
+// Route::get('/', 'App\Http\Controllers\ProdukController@list');
+Route::get('/', 'App\Http\Controllers\ProdukController@home');
 
 
 Route::get('/login', function () {
