@@ -7,7 +7,7 @@
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/user" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/order" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>

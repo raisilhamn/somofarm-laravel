@@ -30,7 +30,8 @@
             aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="#">Sign out</a>
+                <a class="nav-link px-3" href="/logoutdash">Sign out</a>
+                {{-- <a  class="nav-link px-3" href="{{ route('logoutdash') }}">Logout</a> --}}
             </div>
         </div>
     </header>

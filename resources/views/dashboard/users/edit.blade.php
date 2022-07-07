@@ -7,7 +7,7 @@
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/produk/{{ $items->id }}" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/user/{{ $items->id }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -45,7 +45,7 @@
             </div>
 
 
-            {{-- <div class="mb-3">
+            <div class="mb-3">
                 <label for="password" class="form-label">password</label>
                 <textarea class="form-control @error('password') is-invalid @enderror" id="password" rows="5"
                     name="password">{{ $items->password }}</textarea>
@@ -55,7 +55,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div> --}}
+            </div>
 
 
             

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Support\Facades\Hash;
 
-class DashboardUserController extends Controller
+class DashboardOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class DashboardUserController extends Controller
     public function index()
     {
         // $this->authorize('admin');
-        return view('dashboard.users.index', [
+        return view('dashboard.order.index', [
             'items' => User::all()
         ]);
     }
@@ -33,7 +33,7 @@ class DashboardUserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create');
+        return view('dashboard.order.create');
     }
 
     /**

@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
         
         User::create($validated);
-        $request-> assignRole('user');
+        // $request-> assignRole('user');
 
         $request->session()->flash('success','Registrasi berhasil, silahkan login');
 
