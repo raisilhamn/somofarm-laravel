@@ -3,7 +3,10 @@
 @section('container_main')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1>Dashboard</h1>
+        {{-- <h4>Selamat datang {{ Auth::user()->name }}</h1> --}}
     </div>
+    <h4 class="mb-3">Selamat datang {{ Auth::user()->name }}</h1>
+
         <div class="table-responsive col-lg-8">
             <table class="table table-striped table-sm">
                 <thead>

@@ -39,7 +39,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="/dashboard">Dashboard Juga</a></li>
+                            <li><a class="dropdown-item" href="/logoutdash">logout  </a></li>
                         </ul>
                     </div>
                 @else
