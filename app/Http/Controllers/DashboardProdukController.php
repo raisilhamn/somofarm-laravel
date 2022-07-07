@@ -17,10 +17,12 @@ class DashboardProdukController extends Controller
      */
     public function index()
     {
+        // $this->authorize('admin');
         return view('dashboard.posts.index', [
             'items' => Produk::all()
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -110,7 +112,7 @@ class DashboardProdukController extends Controller
         ->update($validatedData);
 
 
-        return redirect('dashboard/produk')->with('success', 'New Post has been Updated');
+        return redirect('dashboard/produk')->with('success', 'User has been Updated');
     }
 
     /**

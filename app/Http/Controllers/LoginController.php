@@ -20,10 +20,12 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
+
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('/dashboard');
         }
 
@@ -32,5 +34,12 @@ class LoginController extends Controller
         );
     }
 
+    // public function authenticated(Request $request, $user)
+    // {
+    //     if ($user->hasRole('admin')) {
+    //         return redirect()->route('admin.page');
+    //     }
 
+    //     return redirect()->route('user.page');
+    // }
 }

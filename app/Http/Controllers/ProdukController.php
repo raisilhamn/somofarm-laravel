@@ -19,7 +19,7 @@ class ProdukController extends Controller
 
     public function show($id)
     {
-        return view('produk',[
+        return view('detail',[
             "title" => "Produks",
             "item" => Produk::find($id)
         ]);
