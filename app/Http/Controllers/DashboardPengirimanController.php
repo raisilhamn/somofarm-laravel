@@ -26,6 +26,14 @@ class DashboardPengirimanController extends Controller
         ]);
     }
 
+    public function indexUser()
+    {
+        // $this->authorize('admin');
+        return view('dashboard.pengiriman.indexUser', [
+            'items' => Pengiriman::all()
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +42,7 @@ class DashboardPengirimanController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create');
+        return view('dashboard.pengiriman.create');
     }
 
     /**
@@ -47,14 +55,13 @@ class DashboardPengirimanController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:5|max:255'
+            'status' => 'required',
+            'tracking' => 'required',
+            'tgl' => 'required'
         ]);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
-
-        User::create($validatedData);
-        return redirect('dashboard/user')->with('success', 'New User has been added');
+        Pengiriman::create($validatedData);
+        return redirect('dashboard/pengiriman')->with('success');
     }
 
     /**
@@ -63,10 +70,10 @@ class DashboardPengirimanController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function show(Pengiriman $p)
+    public function show(Pengiriman $pengiriman)
     {
         return view('dashboard.users.show', [
-            'items' => $p
+            'items' => $pengiriman
         ]);
     }
 
@@ -76,10 +83,10 @@ class DashboardPengirimanController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Pengiriman $pengiriman)
     {
-        return view('dashboard.users.edit', [
-            'items' => $user
+        return view('dashboard.pengiriman.edit', [
+            'items' => $pengiriman
         ]);
     }
 
@@ -90,22 +97,21 @@ class DashboardPengirimanController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Pengiriman $pengiriman)
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:5|max:255'
+            'status' => 'required',
+            'tracking' => 'required',
+            'tgl' => 'required'
         ]);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
 
-
-        User::where('id', $user->id)
+        Pengiriman::where('id', $pengiriman->id)
         ->update($validatedData);
 
 
-        return redirect('dashboard/user')->with('success', 'User has been Updated');
+        return redirect('dashboard/pengiriman')->with('success', 'Tracking has been Updated');
     }
 
     /**
@@ -114,10 +120,10 @@ class DashboardPengirimanController extends Controller
      * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Pengiriman $pengiriman)
     {
-        User::destroy($user->id);
+        Pengiriman::destroy($pengiriman->id);
 
-        return redirect('dashboard/user')->with('danger', 'User has been deleted');
+        return redirect('dashboard/pengiriman')->with('danger', 'pengiriman has been deleted');
     }
 }
