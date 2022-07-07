@@ -69,6 +69,7 @@ Route::get('/cart', function () {
 Route::get('/dashboard', 'App\Http\Controllers\DashboardGeneralController@index');
 
 
+
 // Route::get('/produk', function () {
 //     return view('dashboard.crud_produk');
 // });
@@ -82,3 +83,17 @@ Route::resource(
     '/dashboard/user',
     App\Http\Controllers\DashboardUserController::class
 )->middleware('admin');
+
+Route::resource(
+    '/dashboard/order',
+    App\Http\Controllers\DashboardOrderController::class
+);
+
+
+Route::get('logoutdash', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return redirect('/');
+})->name('logout');
