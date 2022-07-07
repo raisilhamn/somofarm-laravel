@@ -89,6 +89,13 @@ Route::resource(
     App\Http\Controllers\DashboardOrderController::class
 );
 
+Route::resource(
+    '/dashboard/pengiriman',
+    App\Http\Controllers\DashboardPengirimanController::class
+);
+
+Route::get('/dashboard/tracking', 'App\Http\Controllers\DashboardPengirimanController@indexUser');
+
 
 Route::get('logoutdash', function ()
 {
