@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Models\Pengiriman;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Support\Facades\Hash;
 
-class DashboardOrderController extends Controller
+class DashboardPengirimanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class DashboardOrderController extends Controller
     public function index()
     {
         // $this->authorize('admin');
-        return view('dashboard.order.index', [
-            'order' => Order::all()
+        return view('dashboard.pengiriman.index', [
+            'items' => Pengiriman::all()
         ]);
     }
 
@@ -34,7 +34,7 @@ class DashboardOrderController extends Controller
      */
     public function create()
     {
-        return view('dashboard.order.create');
+        return view('dashboard.users.create');
     }
 
     /**
@@ -46,13 +46,15 @@ class DashboardOrderController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required',
-            'penawaran' => 'required'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:5|max:255'
         ]);
 
-        Order::create($validatedData);
-        return redirect('dashboard/order')->with('success', 'New order has been added');
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::create($validatedData);
+        return redirect('dashboard/user')->with('success', 'New User has been added');
     }
 
     /**
@@ -61,10 +63,10 @@ class DashboardOrderController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Pengiriman $p)
     {
         return view('dashboard.users.show', [
-            'items' => $order
+            'items' => $p
         ]);
     }
 
@@ -74,10 +76,10 @@ class DashboardOrderController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(User $user)
     {
-        return view('dashboard.order.edit', [
-            'order' => $order
+        return view('dashboard.users.edit', [
+            'items' => $user
         ]);
     }
 
@@ -88,20 +90,22 @@ class DashboardOrderController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required',
-            'penawaran' => 'required'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:5|max:255'
         ]);
 
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-        Order::where('id', $order->id)
+
+        User::where('id', $user->id)
         ->update($validatedData);
 
 
-        return redirect('dashboard/order')->with('success', 'order has been Updated');
+        return redirect('dashboard/user')->with('success', 'User has been Updated');
     }
 
     /**
@@ -110,10 +114,10 @@ class DashboardOrderController extends Controller
      * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(User $user)
     {
-        Order::destroy($order->id);
+        User::destroy($user->id);
 
-        return redirect('dashboard/order')->with('danger', 'order has been deleted');
+        return redirect('dashboard/user')->with('danger', 'User has been deleted');
     }
 }
