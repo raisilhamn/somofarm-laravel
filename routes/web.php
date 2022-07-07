@@ -34,6 +34,10 @@ Edit ini untuk akses database melalui kontroller
 
 Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
 // Route::get('/produk', 'App\Http\Controllers\ProdukController@ProdukAll');
+
+Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
+Route::post('/produk/id/{id}', 'App\Http\Controllers\ProdukController@show');
+
 Route::get('/dashboard/produk','DashboardProdukController@edit');
 // Route::get('/', 'App\Http\Controllers\ProdukController@list');
 Route::get('/', 'App\Http\Controllers\ProdukController@home');
@@ -44,7 +48,8 @@ Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
 Route::post('/logout', 'App\Http\Controllers\LogoutController@logout');
 
 
-
+Route::get('/register', 'App\Http\Controllers\RegisterController@index')->middleware('guest');
+Route::post('/register', 'App\Http\Controllers\RegisterController@store')->middleware('guest');
 
 // Route::get('/login', function () {
 //     return view('sign_in');
@@ -57,9 +62,12 @@ Route::get('/cart', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// });
+
+Route::get('/dashboard', 'App\Http\Controllers\DashboardGeneralController@index');
+
 
 // Route::get('/produk', function () {
 //     return view('dashboard.crud_produk');
@@ -68,4 +76,9 @@ Route::get('/dashboard', function () {
 Route::resource(
     '/dashboard/produk',
     App\Http\Controllers\DashboardProdukController::class
-);
+)->middleware('admin');
+
+Route::resource(
+    '/dashboard/user',
+    App\Http\Controllers\DashboardUserController::class
+)->middleware('admin');
