@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check()|| auth()->user()->email != 'raisilham@gmail.com') {
+        if (!auth()->check()|| auth()->user()->email != 'raisilham@gmail.com' or 'admin@gmail.com') {
             abort(403); // forbiden 
         }
         return $next($request);
