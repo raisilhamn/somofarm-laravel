@@ -2,18 +2,17 @@
 
 @section('container_main')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1>Edit Produk</h1>
+        <h1>Buat User baru</h1>
     </div>
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/produk/{{ $items->id }}" enctype="multipart/form-data">
-            @method('put')
+        <form method="post" action="/dashboard/produk" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
+                <label for="title" class="form-label">Nama</label>
                 <input type="string" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    required autofocus value="{{ old('title', $items->title) }}">
+                    required autofocus value="{{ old('title') }}">
 
                 @error('title')
                     <div class="invalid-feedback">
@@ -32,9 +31,9 @@
             </div> --}}
 
             <div class="mb-3">
-                <label for="ex" class="form-label">Deskripsi singkat</label>
+                <label for="ex" class="form-label">Email</label>
                 <input type="text" class="form-control @error('ex') is-invalid @enderror" id="ex" name="ex"
-                    value="{{ old('ex', $items->ex) }}">
+                    value="{{ old('ex') }}">
 
                 @error('ex')
                     <div class="invalid-feedback">
@@ -44,32 +43,18 @@
 
             </div>
 
+            {{-- <div class="mb-3">
+                <label for="ex" class="form-label">Password</label>
+                <input type="password" class="form-control @error('ex') is-invalid @enderror" id="ex" name="ex"
+                    value="{{ old('ex') }}">
 
-            <div class="mb-3">
-                <label for="body" class="form-label">Deskripsi Lengkap</label>
-                <textarea class="form-control @error('body') is-invalid @enderror" id="body" rows="5"
-                    name="body">{{ $items->body }}</textarea>
-
-                @error('body')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-
-            <div class="mb-3">
-                <label for="harga" class="form-label">Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga"
-                    value="{{ old('harga', $items->harga) }}">
-
-                @error('harga')
+                @error('ex')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
 
-            </div>
+            </div> --}}
 
 
 
@@ -83,22 +68,7 @@
                 </select>
             </div> --}}
 
-
-
-            <div class="mb-3">
-                <label for="image" class="form-label">Masukkan foto</label>
-                <input type="hidden" name="oldImage" value="{{ $items->image }}">
-                <div class="d-block mb-2">
-                    @if ($items->image)
-                        <img src="{{ asset('storage/' . $items->image) }}" alt="" style="max-height:250px; width: auto;">
-                    @else
-                        {{ 'ngga ada gambar' }}
-                    @endif
-                </div>
-                <input class="form-control" type="file" id="image" name="image">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
     </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="image/somofarmputih.png" alt="" width="75" height="40">
+            <img src="{{ asset('image/somofarmputih.png') }}" alt="" width="75" height="40">
         </a>
 
 
@@ -30,13 +30,34 @@
                         </svg>
                     </button>
                 </a>
-                <a href="/login">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                </a>
-                <a href="/signup">
-                    <button type="button" class="btn btn-light me-2">Sign Up</button>
-                </a>
+
+                @auth
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light me-2 dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            welcome back, {{ auth()->user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/dashboard">Dashboard Juga</a></li>
+                        </ul>
+                    </div>
+                @else
+                    <a href="/login">
+                        <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    </a>
+                @endauth
+
+                @guest
+                    <a href="/register">
+                        <button type="button" class="btn btn-light me-2">Sign Up</button>
+                    </a>
+                @endguest
+
             </form>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </nav>

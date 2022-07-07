@@ -52,6 +52,7 @@
 
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $item->title }}</h5>
+                                        <h5 class="card-title">Rp {{ $item->harga }}</h5>
                                         {{-- <p class="card-text">{{ Str::limit($item-> body, 100) }}</p> --}}
 
                                         <p class="card-text">{{ $item->ex }}</p>
@@ -59,20 +60,24 @@
                                         <div class="d-flex justify-content-between align-items-center">
 
                                             <div class="btn-toolbar" aria-label="Basic example">
-                                                <a href="#" class="btn btn-success">Lihat</a>
+                                                <form action="/produk/id/{{ $item->id }}" method="post"
+                                                    class="">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">lihat</button>
+                                                </form>
                                                 <a href="#" class="btn btn-primary mx-2">Beli</a>
 
                                             </div>
                                             <small
                                                 class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
                                         </div>
-                                        @auth
-                                            <form action="/dashboard/produk/{{ $item->id }}/edit" method="get"
-                                                class="mt-3">
-                                                @csrf
-                                                <button type="submit" class="btn btn-outline-secondary">Edit</button>
-                                            </form>
-                                        @endauth
+                                        @can('admin')
+                                        <form action="/dashboard/produk/{{ $item->id }}/edit" method="get"
+                                            class="mt-3">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-secondary">Edit</button>
+                                        </form>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

@@ -22,22 +22,9 @@
     @include('partials.navbar_home')
     <main class="form-signin w-100 m-auto" style="padding-top: 10%; padding-buttom: 10%">
 
-        @if (session()->has('loginError'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('loginError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
 
 
-        @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        <form action="/login" method="POST">
+        <form action="/register" method="POST">
             @csrf
             <img class="mb-4" src="image/somotrans.png" alt="" width="200" height="150">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -52,9 +39,26 @@
                     </div>
                 @enderror
             </div>
-            <div class="form-floating">
+
+            <div class="form-floating @error('name') is-invalid @enderror">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                <label for="Name">Name</label>
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+
+            <div class="form-floating @error('password') is-invalid @enderror">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <label for="floatingPassword">Password</label>
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="checkbox mb-3">
@@ -64,11 +68,12 @@
             </div>
 
             <a href="">
-                <button class="w-100 btn btn-lg btn-success" type="submit" style="background-color: #287343">Sign
-                    in</button>
+                <button class="w-100 btn btn-lg btn-success" type="submit"
+                    style="background-color: #287343">Daftar</button>
             </a>
-            <p class="mt-3 mb-1">Belum memiliki akun ? </p>
-            <a href="/register" class="d-inline">Registrasi Sekarang</a>
+
+
+
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
         </form>
     </main>
