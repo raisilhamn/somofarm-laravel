@@ -24,9 +24,10 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Password(b5)</th>
+                    <th scope="col">Password(Encrypted)</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@
 
                 @foreach ($items as $i)
                     <tr>
+                        <td>{{ $i->id }}</td>
                         <td>{{ $i->name }}</td>
                         <td>{{ $i->email }}</td>
                         <td>{{ $i->password }}</td>

@@ -15,6 +15,14 @@
                         Order
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/tracking*') ? 'active' : '' }}" aria-current="page"
+                        href="/dashboard/tracking">
+                        <i data-feather="truck"></i>
+                        Tracking
+                    </a>
+                </li>
             @endcannot
 
         </ul>
@@ -37,6 +45,25 @@
                     <a class="nav-link {{ Request::is('dashboard/user*') ? 'active' : '' }}" href="/dashboard/user">
                         <span data-feather="user" class="align-text-bottom"></span>
                         Crud User
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/order*') ? 'active' : '' }}" aria-current="page"
+                        href="/dashboard/order">
+                        <i data-feather="shopping-cart"></i>
+                        Order
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/pengiriman*') ? 'active' : '' }}" aria-current="page"
+                        href="/dashboard/pengiriman">
+                        <i data-feather="truck"></i>
+                        Pengiriman
                     </a>
                 </li>
             </ul>

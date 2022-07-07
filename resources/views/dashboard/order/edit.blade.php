@@ -2,17 +2,18 @@
 
 @section('container_main')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1>Buat User baru</h1>
+        <h1>Edit Order ID "{{ $order->id }}"</h1>
     </div>
     <div class="col-lg-8">
 
         {{-- All form inputs should have a name. --}}
-        <form method="post" action="/dashboard/order" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/order/{{ $order->id }}" enctype="multipart/form-data">
+            @method('put')
             @csrf
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="string" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama"
-                    required autofocus>
+                    required autofocus value="{{ old('nama', $order->nama) }}">
 
                 @error('nama')
                     <div class="invalid-feedback">
@@ -32,9 +33,10 @@
 
             <div class="mb-3">
                 <label for="jumlah" class="form-label">jumlah</label>
-                <input type="integer" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah">
+                <input type="integer" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" name="jumlah"
+                    value="{{ old('jumlah', $order->jumlah) }}">
 
-                @error('jumlah')
+                @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -45,8 +47,8 @@
 
             <div class="mb-3">
                 <label for="penawaran" class="form-label">penawaran</label>
-                <input type="textarea" class="form-control @error('penawaran') is-invalid @enderror" id="penawaran" name="penawaran"
-                    required autofocus>
+                <input type="string" class="form-control @error('penawaran') is-invalid @enderror" id="penawaran" name="penawaran"
+                    required autofocus value="{{ old('penawaran', $order->penawaran) }}">
 
                 @error('penawaran')
                     <div class="invalid-feedback">
@@ -55,31 +57,9 @@
                 @enderror
             </div>
 
-{{-- 
-            <div class="mb-3">
-                <label for="password" class="form-label">password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
-                    value="{{ old('password') }}">
 
-                @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
-
-
-            {{-- <div>
-                <label for="category" class="form-label"></label>
-                <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
-                    <option selected>Pilih kategori</option>
-                    <option value="1">Sapi</option>
-                    <option value="2">Domba</option>
-                    <option value="3">Kelinci</option>
-                </select>
-            </div> --}}
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+            
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
 
     </div>

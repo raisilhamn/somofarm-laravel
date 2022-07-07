@@ -37,8 +37,7 @@
                         <td>{{ $o->nama }}</td>
                         <td>{{ $o->jumlah }}</td>
                         <td>{{ $o->penawaran }}</td>
-                        <td><a href="/dashboard/order/{{ $o->id }}" class="badge bg-info"><span
-                                    data-feather="eye"></span></a>
+                        <td>
                             <a href="/dashboard/order/{{ $o->id }}/edit" class="badge bg-warning"><span
                                     data-feather="edit"></span></a>
 
